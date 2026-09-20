@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10142a" />
+    <title>Threadline — Discovery feed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <main class="shell">
+      <nav class="nav">
+        <a class="brand" href="/" aria-label="Threadline home"><span class="brand-mark">t</span>threadline</a>
+        <div class="nav-status"><span class="status-dot"></span><span id="health-label">Checking service</span></div>
+      </nav>
+
+      <section class="hero">
+        <div class="eyebrow">PERSONAL COMMERCE DISCOVERY</div>
+        <h1>Find what fits<br /><em>your taste.</em></h1>
+        <p>Explore a recommendation feed shaped by the creators, categories, and products you already love.</p>
+      </section>
+
+      <section class="controls" aria-label="Feed controls">
+        <div class="field-wrap">
+          <label for="user-select">Viewing as</label>
+          <select id="user-select" aria-label="Select user"><option value="">Loading users…</option></select>
+        </div>
+        <div class="field-wrap compact">
+          <label for="limit-select">Posts</label>
+          <select id="limit-select" aria-label="Number of posts">
+            <option value="6">6</option><option value="10" selected>10</option><option value="18">18</option>
+          </select>
+        </div>
+        <button id="refresh-button" class="refresh-button"><span aria-hidden="true">↻</span> Refresh feed</button>
+      </section>
+
+      <section class="feed-heading">
+        <div><div class="eyebrow">CURATED FOR YOU</div><h2 id="feed-title">Your daily edit</h2></div>
+        <div class="strategy" id="strategy" hidden><span>✦</span><span id="strategy-text"></span></div>
+      </section>
+
+      <section id="feed" class="feed" aria-live="polite"></section>
+      <section id="empty" class="empty" hidden>
+        <div class="empty-icon">✦</div><h2>Your feed is waiting</h2><p>Choose a user and refresh to generate personal recommendations.</p>
+      </section>
+      <section id="error" class="empty error" hidden>
+        <div class="empty-icon">!</div><h2>We couldn’t reach your recommendations</h2><p id="error-message">Please check the API connection and try again.</p>
+      </section>
+    </main>
+    <template id="card-template">
+      <article class="post-card">
+        <div class="post-art"><span class="art-index"></span><span class="art-orb orb-one"></span><span class="art-orb orb-two"></span><span class="art-squiggle">⌁</span></div>
+        <div class="post-body">
+          <div class="post-meta"><span class="category"></span><span class="score"></span></div>
+          <h3 class="post-title"></h3><p class="post-description"></p>
+          <div class="reason-list"></div>
+          <details><summary>Why this appears</summary><div class="breakdown"></div></details>
+        </div>
+      </article>
+    </template>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
